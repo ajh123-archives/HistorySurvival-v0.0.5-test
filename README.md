@@ -1,7 +1,7 @@
 # History Survival
 History Survival is a multiplay game based of [voxel-rs](https://github.com/Technici4n/voxel-rs). Once completed, you will be able to create an empire and take over the world.
 
-[![CLA assistant](https://cla-assistant.io/readme/badge/ajh123-development/HistorySurvival)](https://cla-assistant.io/ajh123-development/HistorySurvival)
+[![CLA assistant](https://cla-assistant.io/readme/badge/ajh123/HistorySurvival)](https://cla-assistant.io/ajh123/HistorySurvival)
 
 More information can be found on the [blog](https://minersonline.tk/blog).
 
