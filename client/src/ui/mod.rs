@@ -4,7 +4,7 @@ use crate::window::WindowData;
 use anyhow::Result;
 use quint::{wt, Size, Style, WidgetTree};
 use std::collections::BTreeMap;
-use voxel_rs_common::debug::DebugInfo;
+use history_survival_common::debug::DebugInfo;
 use wgpu_glyph::ab_glyph::PxScale;
 use winit::dpi::LogicalPosition;
 

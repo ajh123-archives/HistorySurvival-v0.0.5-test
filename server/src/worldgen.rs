@@ -1,9 +1,9 @@
-use voxel_rs_common::{
+use history_survival_common::{
     block::Block,
     registry::Registry,
     world::{Chunk, ChunkPos, WorldGenerator},
 };
-use voxel_rs_common::worker::{WorkerState, Worker};
+use history_survival_common::worker::{WorkerState, Worker};
 
 static WORLDGEN_QUEUE_SIZE: usize = 20;
 

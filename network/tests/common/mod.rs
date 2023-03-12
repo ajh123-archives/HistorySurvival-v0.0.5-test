@@ -5,7 +5,7 @@ use rand::{
 use std::collections::{BinaryHeap, HashMap};
 use std::sync::Mutex;
 use std::time::{Duration, Instant};
-use voxel_rs_network::Socket;
+use history_survival_network::Socket;
 use super::SocketAddr;
 
 lazy_static::lazy_static! {

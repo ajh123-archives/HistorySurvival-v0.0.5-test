@@ -1,9 +1,9 @@
 //! Meshing worker, allowing meshing to be performed in a separate thread
 use super::meshing::{greedy_meshing, ChunkMeshData};
 use crate::render::world::ChunkVertex;
-use voxel_rs_common::block::BlockMesh;
-use voxel_rs_common::world::ChunkPos;
-use voxel_rs_common::worker::{WorkerState, Worker};
+use history_survival_common::block::BlockMesh;
+use history_survival_common::world::ChunkPos;
+use history_survival_common::worker::{WorkerState, Worker};
 
 pub type ChunkMesh = (ChunkPos, Vec<ChunkVertex>, Vec<u32>);
 pub type MeshingWorker = Worker<ChunkMeshData, ChunkMesh, MeshingState>;

@@ -1,7 +1,7 @@
 use anyhow::Result;
 use log::info;
 
-use voxel_rs_common::{
+use history_survival_common::{
     block::Block,
     network::{messages::ToClient, messages::ToServer, Client, ClientEvent},
     player::RenderDistance,
@@ -24,11 +24,11 @@ use crate::{
 };
 use nalgebra::Vector3;
 use std::time::Instant;
-use voxel_rs_common::data::vox::VoxelModel;
-use voxel_rs_common::debug::{send_debug_info, send_perf_breakdown, DebugInfo};
-use voxel_rs_common::item::{Item, ItemMesh};
-use voxel_rs_common::physics::simulation::{ClientPhysicsSimulation, PhysicsState, ServerState};
-use voxel_rs_common::time::BreakdownCounter;
+use history_survival_common::data::vox::VoxelModel;
+use history_survival_common::debug::{send_debug_info, send_perf_breakdown, DebugInfo};
+use history_survival_common::item::{Item, ItemMesh};
+use history_survival_common::physics::simulation::{ClientPhysicsSimulation, PhysicsState, ServerState};
+use history_survival_common::time::BreakdownCounter;
 use winit::event::{ElementState, MouseButton};
 use crate::gui::Gui;
 

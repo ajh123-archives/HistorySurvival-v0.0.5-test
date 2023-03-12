@@ -1,12 +1,12 @@
 [package]
-name = "voxel-rs-server"
-version = "0.1.0"
-authors = ["Technici4n", "Azercoco"]
+name = "history_survival_server"
+version = "0.0.5"
+authors = ["ajh123", "Technici4n", "Azercoco"]
 edition = "2018"
 
 [dependencies]
 # Voxel-rs
-voxel-rs-common = { path = "../common" }
+history_survival_common = { path = "../common" }
 
 # Utilities
 anyhow = "1.0"

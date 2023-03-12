@@ -1,7 +1,7 @@
 use std::str::FromStr;
 use std::thread;
 use std::time::Duration;
-use voxel_rs_network::{Client, Server, ServerEvent, SocketAddr, MessageDelivery};
+use history_survival_network::{Client, Server, ServerEvent, SocketAddr, MessageDelivery};
 
 mod common;
 use self::common::{DummySocket, DummySocketConfig};

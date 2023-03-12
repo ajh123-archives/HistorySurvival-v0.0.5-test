@@ -5,10 +5,10 @@ use nalgebra::Vector3;
 use std::collections::HashMap;
 use std::sync::Arc;
 use std::time::Instant;
-use voxel_rs_common::block::BlockId;
-use voxel_rs_common::physics::aabb::AABB;
-use voxel_rs_common::physics::player::PhysicsPlayer;
-use voxel_rs_common::{
+use history_survival_common::block::BlockId;
+use history_survival_common::physics::aabb::AABB;
+use history_survival_common::physics::player::PhysicsPlayer;
+use history_survival_common::{
     data::load_data,
     debug::{send_debug_info, send_perf_breakdown},
     network::{
@@ -23,7 +23,7 @@ use voxel_rs_common::{
     },
     worldgen::DefaultWorldGenerator,
 };
-use voxel_rs_common::time::BreakdownCounter;
+use history_survival_common::time::BreakdownCounter;
 
 mod light;
 mod world;
@@ -247,7 +247,7 @@ pub fn launch_server(mut server: Box<dyn Server>) -> Result<()> {
                 data.close_chunks.get_close_chunks().iter().map(|chunk_pos| CloseChunkPos::new(*chunk_pos, player_chunk)).collect::<Vec<_>>()
             })
             .collect::<Vec<_>>();
-        voxel_rs_common::collections::merge_arrays(&mut close_chunks_merged, &all_close_chunks[..]);
+        history_survival_common::collections::merge_arrays(&mut close_chunks_merged, &all_close_chunks[..]);
         let close_chunks = close_chunks_merged.iter().map(|&ccp| ccp.pos).collect::<Vec<_>>();
         server_timing.record_part("Compute close chunks");
         

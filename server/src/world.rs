@@ -2,7 +2,7 @@ use std::{
     collections::{HashMap, HashSet},
     sync::Arc,
 };
-use voxel_rs_common::{
+use history_survival_common::{
     block::{Block, BlockId},
     player::RenderDistance,
     physics::BlockContainer,

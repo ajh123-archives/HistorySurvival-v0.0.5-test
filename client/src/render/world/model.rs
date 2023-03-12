@@ -1,5 +1,5 @@
 use super::RgbVertex;
-use voxel_rs_common::data::vox::VoxelModel;
+use history_survival_common::data::vox::VoxelModel;
 
 /// Data structure used to draw a pre-loaded model
 /// Contains the position, scale and its id in the model registry

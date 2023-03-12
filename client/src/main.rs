@@ -1,8 +1,8 @@
 use anyhow::Result;
 use log::{error, info};
 use std::path::Path;
-use voxel_rs_common::network::dummy;
-use voxel_rs_server::launch_server;
+use history_survival_common::network::dummy;
+use history_survival_server::launch_server;
 
 mod fps;
 mod gui;

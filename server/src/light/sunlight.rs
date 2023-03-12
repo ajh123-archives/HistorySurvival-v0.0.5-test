@@ -1,4 +1,4 @@
-use voxel_rs_common::world::{Chunk, CHUNK_SIZE};
+use history_survival_common::world::{Chunk, CHUNK_SIZE};
 use super::HighestOpaqueBlock;
 use std::sync::Arc;
 

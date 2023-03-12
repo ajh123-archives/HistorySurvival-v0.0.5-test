@@ -1,4 +1,4 @@
-use voxel_rs_common::debug::{DebugInfo, DebugInfoPart};
+use history_survival_common::debug::{DebugInfo, DebugInfoPart};
 
 const ELEMENT_HEIGHT: i32 = 20;
 const ELEMENT_OFFSET: i32 = 25;

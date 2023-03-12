@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 use std::sync::Arc;
-use voxel_rs_common::{
+use history_survival_common::{
     block::BlockMesh,
     physics::BlockContainer,
     player::{CloseChunks, RenderDistance},

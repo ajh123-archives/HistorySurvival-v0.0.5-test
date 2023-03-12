@@ -1,7 +1,7 @@
 [package]
-name = "voxel-rs-network"
-version = "0.1.0"
-authors = ["Technici4n", "Azercoco"]
+name = "history_survival_network"
+version = "0.0.5"
+authors = ["ajh123", "Technici4n", "Azercoco"]
 edition = "2018"
 
 [dependencies]

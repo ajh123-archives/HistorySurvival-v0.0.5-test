@@ -8,10 +8,10 @@ use crate::texture::load_image;
 use crate::window::WindowBuffers;
 use image::{ImageBuffer, Rgba};
 use nalgebra::{Matrix4, Similarity3, Translation3, UnitQuaternion, Vector3};
-use voxel_rs_common::data::vox::VoxelModel;
-use voxel_rs_common::debug::send_debug_info;
-use voxel_rs_common::registry::Registry;
-use voxel_rs_common::world::{BlockPos, ChunkPos};
+use history_survival_common::data::vox::VoxelModel;
+use history_survival_common::debug::send_debug_info;
+use history_survival_common::registry::Registry;
+use history_survival_common::world::{BlockPos, ChunkPos};
 
 mod meshing;
 mod meshing_worker;

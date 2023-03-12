@@ -1,8 +1,8 @@
 //! Meshing code
 use super::ChunkVertex;
 use std::sync::Arc;
-use voxel_rs_common::world::LightChunk;
-use voxel_rs_common::{
+use history_survival_common::world::LightChunk;
+use history_survival_common::{
     block::BlockMesh,
     collections::zero_initialized_vec,
     world::{Chunk, CHUNK_SIZE},

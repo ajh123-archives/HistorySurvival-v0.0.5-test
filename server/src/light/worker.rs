@@ -1,4 +1,4 @@
-use voxel_rs_common::{
+use history_survival_common::{
     collections::zero_initialized_vec,
     world::{Chunk, CHUNK_SIZE, LightChunk},
     worker::{Worker, WorkerState},
