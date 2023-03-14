@@ -7,6 +7,22 @@ const PLAYER_SIDE: f64 = 0.8;
 const PLAYER_HEIGHT: f64 = 1.8;
 const CAMERA_OFFSET: [f64; 3] = [0.4, 1.6, 0.4];
 
+/// A helper struct to keep track of the yaw and pitch of a player
+#[derive(Debug, Clone, Copy)]
+pub struct YawPitch {
+    pub yaw: f64,
+    pub pitch: f64,
+}
+
+impl Default for YawPitch {
+    fn default() -> Self {
+        Self {
+            yaw: 0.0,
+            pitch: -45.0,
+        }
+    }
+}
+
 /// The physics representation of a player
 #[derive(Debug, Clone)]
 pub struct PhysicsPlayer {
@@ -14,6 +30,7 @@ pub struct PhysicsPlayer {
     pub aabb: AABB,
     /// The current velocity of the player
     pub velocity: Vector3<f64>,
+    pub yaw_pitch: YawPitch,
 }
 
 impl PhysicsPlayer {
@@ -94,6 +111,7 @@ impl Default for PhysicsPlayer {
                 (PLAYER_SIDE, PLAYER_HEIGHT, PLAYER_SIDE),
             ),
             velocity: Vector3::zeros(),
+            yaw_pitch: Default::default(),
         }
     }
 }

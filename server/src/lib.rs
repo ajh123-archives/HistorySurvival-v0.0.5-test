@@ -8,6 +8,7 @@ use std::time::Instant;
 use history_survival_common::block::BlockId;
 use history_survival_common::physics::aabb::AABB;
 use history_survival_common::physics::player::PhysicsPlayer;
+use history_survival_common::physics::player::YawPitch;
 use history_survival_common::{
     data::load_data,
     debug::{send_debug_info, send_perf_breakdown},
@@ -117,6 +118,7 @@ pub fn launch_server(mut server: Box<dyn Server>) -> Result<()> {
                                 size_z: 0.0,
                             },
                             velocity: Vector3::zeros(),
+                            yaw_pitch: YawPitch {yaw: yaw, pitch: pitch},
                         };
                         let y = yaw.to_radians();
                         let p = pitch.to_radians();
@@ -143,6 +145,7 @@ pub fn launch_server(mut server: Box<dyn Server>) -> Result<()> {
                                 size_z: 0.0,
                             },
                             velocity: Vector3::zeros(),
+                            yaw_pitch: YawPitch {yaw: yaw, pitch: pitch},
                         };
                         let y = yaw.to_radians();
                         let p = pitch.to_radians();
@@ -165,6 +168,7 @@ pub fn launch_server(mut server: Box<dyn Server>) -> Result<()> {
                                 size_z: 0.0,
                             },
                             velocity: Vector3::zeros(),
+                            yaw_pitch: YawPitch {yaw: yaw, pitch: pitch},
                         };
                         let y = yaw.to_radians();
                         let p = pitch.to_radians();

@@ -17,5 +17,6 @@ A standard `cargo run --release` should be enough to run this project.
 You may want to enable logging with the environment variable `RUST_LOG=warn,history_survival_client=debug,history_survival_common=debug,history_survival_server=debug`.
 
 ## License
-The code is licensed under the [MIT license](LICENSE), copyright Azercoco and Technici4n.
-The textures are released under the [CC-BY 4.0 license](TEXTURES_LICENSE), copyright Azercoco and Technici4n.
+The code is licensed under the [MIT license](LICENSE), copyright [ajh123](https://github.com/ajh123).
+Some code comes from [voxel-rs](https://github.com/Technici4n/voxel-rs) and is licensed under the [MIT license](LICENSE), copyright [Azercoco](https://github.com/Azercoco) and [Technici4n](https://github.com/Technici4n).
+Textures from [voxel-rs](https://github.com/Technici4n/voxel-rs) are released under the [CC-BY 4.0 license](TEXTURES_LICENSE), copyright [Azercoco](https://github.com/Azercoco) and [Technici4n](https://github.com/Technici4n).

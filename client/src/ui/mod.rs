@@ -183,11 +183,11 @@ impl Ui {
     pub fn handle_key_state_changes(&mut self, changes: Vec<(u32, winit::event::ElementState)>) {
         for (key, state) in changes.into_iter() {
             // Escape key
-            if key == 1 {
-                if let winit::event::ElementState::Pressed = state {
-                    self.show_menu = !self.show_menu;
-                }
-            }
+            // if key == 1 {
+            //     if let winit::event::ElementState::Pressed = state {
+            //         self.show_menu = !self.show_menu;
+            //     }
+            // }
         }
     }
 
@@ -201,7 +201,7 @@ impl Ui {
     }
 
     pub fn should_capture_mouse(&self) -> bool {
-        !self.show_menu
+        false
     }
 
     pub fn should_exit(&self) -> bool {

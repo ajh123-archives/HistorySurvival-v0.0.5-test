@@ -88,7 +88,7 @@ pub const DEPTH_FORMAT: wgpu::TextureFormat = wgpu::TextureFormat::Depth32Float;
 pub fn open_window(mut settings: Settings, initial_state: StateFactory) -> ! {
     info!("Opening new window...");
     // Create the window
-    let window_title = "voxel-rs".to_owned();
+    let window_title = "Hitory Survival".to_owned();
     let event_loop = winit::event_loop::EventLoop::new();
     let window = Window::new(&event_loop).expect("Failed to create window");
     window.set_title(&window_title);
@@ -203,7 +203,7 @@ pub fn open_window(mut settings: Settings, initial_state: StateFactory) -> ! {
                         input_state.clear();
                     }
                     KeyboardInput { input, .. } => {
-                        if input_state.process_keyboard_input(input) {
+                        if input_state.process_keyboard_input(input, ) {
                             key_state_changes.push((input.scancode, input.state));
                         }
                     }

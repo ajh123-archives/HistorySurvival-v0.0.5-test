@@ -9,7 +9,7 @@ use history_survival_common::{
     world::BlockPos,
 };
 
-use crate::input::YawPitch;
+use history_survival_common::physics::player::YawPitch;
 //use crate::model::model::Model;
 //use crate::world::meshing::ChunkMeshData;
 use crate::render::{Frustum, UiRenderer, WorldRenderer};
@@ -48,7 +48,6 @@ pub struct SinglePlayer {
     render_distance: RenderDistance,
     // TODO: put this in the settigs
     physics_simulation: ClientPhysicsSimulation,
-    yaw_pitch: YawPitch,
     debug_info: DebugInfo,
     start_time: Instant,
     client_timing: BreakdownCounter,
@@ -129,7 +128,6 @@ impl SinglePlayer {
                     },
                     player_id,
                 ),
-                yaw_pitch: Default::default(),
                 debug_info: DebugInfo::new_current(),
                 start_time: Instant::now(),
                 client_timing: BreakdownCounter::new(),
@@ -174,9 +172,9 @@ impl State for SinglePlayer {
         self.handle_server_messages();
         self.client_timing.record_part("Network events");
 
-        // Collect input
+        // Init input
         let frame_input =
-            input_state.get_physics_input(self.yaw_pitch, self.ui.should_update_camera());
+            input_state.get_physics_input(YawPitch::default(), self.ui.should_update_camera());
         // Send input to server
         self.client.send(ToServer::UpdateInput(frame_input));
         self.client_timing.record_part("Collect and send input");
@@ -185,6 +183,12 @@ impl State for SinglePlayer {
         self.physics_simulation
             .step_simulation(frame_input, Instant::now(), &self.world);
         self.client_timing.record_part("Update physics");
+
+        // Collect new input
+        let frame_input =
+            input_state.get_physics_input(self.physics_simulation.get_player().yaw_pitch, self.ui.should_update_camera());
+        // Send mew input to server
+        self.client.send(ToServer::UpdateInput(frame_input));
 
         let p = self.physics_simulation.get_camera_position();
         let player_chunk = BlockPos::from(p).containing_chunk_pos();
@@ -203,7 +207,7 @@ impl State for SinglePlayer {
             "yawpitch",
             format!(
                 "yaw = {:.0}\npitch = {:.0}",
-                self.yaw_pitch.yaw, self.yaw_pitch.pitch
+                self.physics_simulation.get_player().yaw_pitch.yaw, self.physics_simulation.get_player().yaw_pitch.pitch
             ),
         );
 
@@ -241,14 +245,14 @@ impl State for SinglePlayer {
 
         let frustum = Frustum::new(
             self.physics_simulation.get_camera_position(),
-            self.yaw_pitch,
+            self.physics_simulation.get_player().yaw_pitch,
         );
 
         // Try raytracing TODO: move this to update
         let pp = self.physics_simulation.get_player();
         let pointed_block = {
-            let y = self.yaw_pitch.yaw.to_radians();
-            let p = self.yaw_pitch.pitch.to_radians();
+            let y = self.physics_simulation.get_player().yaw_pitch.yaw.to_radians();
+            let p = self.physics_simulation.get_player().yaw_pitch.pitch.to_radians();
             let dir = Vector3::new(-y.sin() * p.cos(), p.sin(), -y.cos() * p.cos());
             pp.get_pointed_at(dir, 10.0, &self.world)
         };
@@ -335,9 +339,9 @@ impl State for SinglePlayer {
     }
 
     fn handle_mouse_motion(&mut self, _settings: &Settings, delta: (f64, f64)) {
-        if self.ui.should_update_camera() {
-            self.yaw_pitch.update_cursor(delta.0, delta.1);
-        }
+        // if self.ui.should_update_camera() {
+        //     self.physics_simulation.get_player().yaw_pitch.update_cursor(delta.0, delta.1);
+        // }
     }
 
     fn handle_cursor_movement(&mut self, logical_position: winit::dpi::LogicalPosition<f64>) {
@@ -352,8 +356,8 @@ impl State for SinglePlayer {
     ) {
         for (button, state) in changes.iter() {
             let pp = self.physics_simulation.get_player();
-            let y = self.yaw_pitch.yaw;
-            let p = self.yaw_pitch.pitch;
+            let y = self.physics_simulation.get_player().yaw_pitch.yaw;
+            let p = self.physics_simulation.get_player().yaw_pitch.pitch;
             match *button {
                 MouseButton::Left => match *state {
                     ElementState::Pressed => {

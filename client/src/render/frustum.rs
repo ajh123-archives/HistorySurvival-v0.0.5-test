@@ -1,4 +1,4 @@
-use crate::input::YawPitch;
+use history_survival_common::physics::player::YawPitch;
 use nalgebra::{Matrix4, Perspective3, Vector3, Vector4};
 use history_survival_common::world::{ChunkPos, CHUNK_SIZE};
 

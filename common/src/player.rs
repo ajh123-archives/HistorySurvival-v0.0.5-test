@@ -1,5 +1,6 @@
 use crate::world::ChunkPos;
 use serde::Deserialize;
+use crate::physics::player::YawPitch;
 
 /// The input of a player
 #[derive(Debug, Clone, Copy)]
@@ -10,8 +11,9 @@ pub struct PlayerInput {
     pub key_move_right: bool,
     pub key_move_up: bool,
     pub key_move_down: bool,
-    pub yaw: f64,
-    pub pitch: f64,
+    pub key_rotate_left: bool,
+    pub key_rotate_right: bool,
+    pub yaw_pitch: YawPitch,
     pub flying: bool,
 }
 
@@ -24,8 +26,9 @@ impl Default for PlayerInput {
             key_move_right: false,
             key_move_up: false,
             key_move_down: false,
-            yaw: 0.0,
-            pitch: 0.0,
+            key_rotate_left: false,
+            key_rotate_right: false,
+            yaw_pitch: Default::default(),
             flying: true,
         }
     }

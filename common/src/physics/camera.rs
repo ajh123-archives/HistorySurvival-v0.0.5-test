@@ -34,19 +34,20 @@ pub fn default_camera<BC: BlockContainer>(
         const ACCELERATION: f64 = 50.0;
         const MAX_SPEED: f64 = 30.0;
         player.velocity.y = 0.0;
+
         // If the player is flying, then we update its velocity. By default, it falls off to 0
         let mut player_acceleration = Vector3::zeros();
         if input.key_move_forward {
-            player_acceleration += movement_direction(input.yaw, 0.0);
+            player_acceleration += movement_direction(input.yaw_pitch.yaw, 0.0);
         }
         if input.key_move_left {
-            player_acceleration += movement_direction(input.yaw, 90.0);
+            player_acceleration += movement_direction(input.yaw_pitch.yaw, 90.0);
         }
         if input.key_move_backward {
-            player_acceleration += movement_direction(input.yaw, 180.0);
+            player_acceleration += movement_direction(input.yaw_pitch.yaw, 180.0);
         }
         if input.key_move_right {
-            player_acceleration += movement_direction(input.yaw, 270.0);
+            player_acceleration += movement_direction(input.yaw_pitch.yaw, 270.0);
         }
         let auto_acceleration = -normalize_or_zero(player.velocity);
         let player_acceleration = normalize_or_zero(player_acceleration);
@@ -73,16 +74,16 @@ pub fn default_camera<BC: BlockContainer>(
         player.velocity.z = 0.0;
         let mut horizontal_velocity = Vector3::zeros();
         if input.key_move_forward {
-            horizontal_velocity += movement_direction(input.yaw, 0.0);
+            horizontal_velocity += movement_direction(input.yaw_pitch.yaw, 0.0);
         }
         if input.key_move_left {
-            horizontal_velocity += movement_direction(input.yaw, 90.0);
+            horizontal_velocity += movement_direction(input.yaw_pitch.yaw, 90.0);
         }
         if input.key_move_backward {
-            horizontal_velocity += movement_direction(input.yaw, 180.0);
+            horizontal_velocity += movement_direction(input.yaw_pitch.yaw, 180.0);
         }
         if input.key_move_right {
-            horizontal_velocity += movement_direction(input.yaw, 270.0);
+            horizontal_velocity += movement_direction(input.yaw_pitch.yaw, 270.0);
         }
         let horizontal_velocity = normalize_or_zero(horizontal_velocity) * HORIZONTAL_SPEED;
         if player.aabb.is_on_the_ground(world) {
@@ -111,4 +112,21 @@ pub fn default_camera<BC: BlockContainer>(
         "velocity",
         format!("velocity: {:.2} {:.2} {:.2}", vx, vy, vz),
     );
+
+    // TODO: don't hardcode this
+    let camera_speed: f64 = 0.2;
+    if input.key_rotate_left {
+        player.yaw_pitch.yaw += camera_speed;
+    }
+    if input.key_rotate_right {
+        player.yaw_pitch.yaw -= camera_speed;
+    }
+
+    // Ensure the yaw stays within [-180; 180]
+    if player.yaw_pitch.yaw < -180.0 {
+        player.yaw_pitch.yaw += 360.0;
+    }
+    if player.yaw_pitch.yaw > 180.0 {
+        player.yaw_pitch.yaw -= 360.0;
+    }
 }
